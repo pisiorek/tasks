@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok:1.18.6'
+	compile('org.projectlombok:lombok')
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
