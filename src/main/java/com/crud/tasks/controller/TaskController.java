@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
@@ -20,7 +21,8 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks(){
-        return new ArrayList<>();
+        return taskMapper.mapToTaskDtoList(service.getAllTasks());
+        //return new ArrayList<>();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTask")
