@@ -5,7 +5,7 @@ echo Cannot start script RUNCRUD
 goto fail
 
 :startbrowser
-start opera http://localhost:8080/crud/v1/task/getTasks
+start chrome http://localhost:8080/crud/v1/task/getTasks
 goto end
 
 :fail
