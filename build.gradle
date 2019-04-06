@@ -12,7 +12,7 @@ plugins {
 }
 
 apply plugin: 'org.springframework.boot'
-apply plugin: 'war'
+//apply plugin: 'war'
 
 group = 'com.crud'
 version = '0.0.1-SNAPSHOT'
@@ -27,7 +27,8 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok:1.18.4")
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('mysql:mysql-connector-java')	
+	// compile('mysql:mysql-connector-java')
+	compile('otg.postgresql:postgresql')	//baza danych postgres dla potrzeb Heroku, w przypadku Tomcata zakomentować tę linię i odkomentować powyższą z mysql
 	testCompile ('org.springframework.boot:spring-boot-starter-test')
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	//providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }
