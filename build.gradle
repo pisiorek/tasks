@@ -23,12 +23,14 @@ repositories {
 }
 
 dependencies {
+
+	//compile("org.projectlombok:lombok")		// dodane dla potrzeb heroku - może nie działać z Tomcatem wtedy zakomentować i odkomentować poniższe dwie linie
 	compileOnly("org.projectlombok:lombok:1.18.4")
 	annotationProcessor("org.projectlombok:lombok:1.18.4")
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	// compile('mysql:mysql-connector-java')
-	compile('otg.postgresql:postgresql')	//baza danych postgres dla potrzeb Heroku, w przypadku Tomcata zakomentować tę linię i odkomentować powyższą z mysql
+	compile('org.postgresql:postgresql')	//baza danych postgres dla potrzeb Heroku, w przypadku Tomcata zakomentować tę linię i odkomentować powyższą z mysql
 	testCompile ('org.springframework.boot:spring-boot-starter-test')
 	//providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }
