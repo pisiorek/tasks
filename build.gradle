@@ -24,8 +24,9 @@ repositories {
 
 dependencies {
 
-	compileOnly("org.projectlombok:lombok:1.18.4")
-	annotationProcessor("org.projectlombok:lombok:1.18.4")
+	compile('org.projectlombok:lombok')
+	//compileOnly("org.projectlombok:lombok:1.18.4")
+	//annotationProcessor("org.projectlombok:lombok:1.18.4")
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	//compile('mysql:mysql-connector-java')
