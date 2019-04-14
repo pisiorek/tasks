@@ -28,8 +28,8 @@ public class TrelloCardDto {
     private BadgesDto badges;
 
     @JsonProperty("attachmentsByType")
-    private AttachmentsByType attachments;
+    private AttachmentsByTypeDto attachments;
 
     @JsonProperty("trello")
-    private Trello trello;
+    private TrelloDto trelloDto;
 }
