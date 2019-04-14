@@ -22,10 +22,12 @@ public class TrelloController {
     private TrelloClient trelloClient;
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public void getTrelloBoards() {
+    public List<TrelloBoardDto> getTrelloBoards() {
+
+        return trelloClient.getTrelloBoards();
 
         // GET request
-        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
+/*        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 
         trelloBoards.forEach(trelloBoardDto -> {
 
@@ -36,7 +38,7 @@ public class TrelloController {
             trelloBoardDto.getLists().forEach(trelloList ->
                     System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
 
-        });
+        });*/
 
         /**
          * Zadanie do omówienia z Mateuszem
