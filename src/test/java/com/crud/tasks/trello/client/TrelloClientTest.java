@@ -45,7 +45,7 @@ public class TrelloClientTest {
         trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>());
 
         URI uri = new URI("http://test.com/members/dariuszharanczyk/boards?key=test&token=test&fields=name,id&lists=all");
-
+        //System.out.println(uri);
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoards);
 
         //When
@@ -64,7 +64,7 @@ public class TrelloClientTest {
         //Given
         TrelloCardDto trelloCardDto = new TrelloCardDto(
                 "Test task",
-                "Test description",
+                "Test Description",
                 "top",
                 "test_id"
         );
@@ -85,6 +85,23 @@ public class TrelloClientTest {
         assertEquals("1", newCard.getId());
         assertEquals("Test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
+
+    }
+
+    @Test
+    public void  shouldReturnEmptyList()throws URISyntaxException{
+        //Given
+        TrelloBoardDto[] trelloBoards = null;
+
+        URI uri = new URI("http://test.com/members/dariuszharanczyk/boards?key=test&token=test&fields=name,id&lists=all");
+        //System.out.println(uri);
+        when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoards);
+
+        //When
+        List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();
+
+        //Then
+        assertEquals(0, fetchedTrelloBoards.size());
 
     }
 
