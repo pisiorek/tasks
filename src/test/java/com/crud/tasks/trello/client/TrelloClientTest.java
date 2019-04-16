@@ -36,6 +36,7 @@ public class TrelloClientTest {
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
+       // when(trelloConfig.getTrelloAppUsername()).thenReturn("test"); //można tę linijkę użyć i odkomentować getUri w trelloClient
     }
 
     @Test
@@ -94,7 +95,7 @@ public class TrelloClientTest {
         TrelloBoardDto[] trelloBoards = null;
 
         URI uri = new URI("http://test.com/members/dariuszharanczyk/boards?key=test&token=test&fields=name,id&lists=all");
-        //System.out.println(uri);
+
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoards);
 
         //When
