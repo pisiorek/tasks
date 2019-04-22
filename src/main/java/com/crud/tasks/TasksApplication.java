@@ -7,7 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 //public class TasksApplication extends SpringBootServletInitializer {  //przy tomcacie odkomentować i zakomentować ponizsza linijke
-public class TasksApplication {
+public class TasksApplication {		//przy heroku odkomentować i zakomentować powyższe
 
 	public static void main(String[] args) {
 		SpringApplication.run(TasksApplication.class, args);
