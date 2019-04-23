@@ -20,7 +20,7 @@ public class TrelloController {
     private TrelloClient trelloClient;
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public void getTrelloBoards() {
+    public List<TrelloBoardDto> getTrelloBoards() {
 
         // GET request
         List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
@@ -35,21 +35,7 @@ public class TrelloController {
                     System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
 
         });
-
-        /**
-         * Zadanie do omówienia z Mateuszem
-         * ***/
-
-/*        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-
-        List<TrelloBoardDto> filteredList = trelloBoards.stream()
-                .filter(trelloBoardDto -> trelloBoardDto.getId() != null && trelloBoardDto.getName() != null)
-                .filter(trelloBoardDto -> trelloBoardDto.getName().regionMatches(0,"Kodilla",0,7))
-                .collect(Collectors.toList());
-
-                filteredList.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));*/
-
-        //trelloBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
+        return trelloBoards;
 
     }
     // POST request
