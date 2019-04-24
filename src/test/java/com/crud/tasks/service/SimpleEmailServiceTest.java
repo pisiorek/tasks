@@ -26,20 +26,16 @@ public class SimpleEmailServiceTest {
         //Given
         Mail mail = new Mail("test@test.com", "Test subject", "Test message");
 
-        //ArgumentCaptor<Mail> mailArgs = ArgumentCaptor.forClass(Mail.class);
-
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(mail.getMailTo());
-        mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
-/*        if(mail.getToCc() != null) {
-            mailMessage.setCc(mail.getToCc());
-        }*/
+        /**
+         * ArgumentCaptor przechwytuje (obiekt) wiadomość zwróconą i sformatowaną przez SimpleMailMessage
+         * pozwala na ograniczenie w testach dublowania kodu i wykorzystanie już istniejącego
+         */
+        ArgumentCaptor<SimpleMailMessage> mailArgs = ArgumentCaptor.forClass(SimpleMailMessage.class);
 
         //When
         simpleEmailService.send(mail);
 
         //Then
-        verify(javaMailSender, times(1)).send(mailMessage);
+        verify(javaMailSender, times(1)).send(mailArgs.capture());
     }
 }
