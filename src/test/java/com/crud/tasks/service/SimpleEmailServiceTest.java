@@ -3,6 +3,7 @@ package com.crud.tasks.service;
 import com.crud.tasks.domain.Mail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -23,15 +24,18 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmail(){
         //Given
-        Mail mail = new Mail("test@test.com", "Test subject", "Test message", "toCc@test.com");
+        Mail mail = new Mail("test@test.com", "Test subject", "Test message");
+
+        //ArgumentCaptor<Mail> mailArgs = ArgumentCaptor.forClass(Mail.class);
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-        if(mail.getToCc() != null) {
+/*        if(mail.getToCc() != null) {
             mailMessage.setCc(mail.getToCc());
-        }
+        }*/
+
         //When
         simpleEmailService.send(mail);
 
