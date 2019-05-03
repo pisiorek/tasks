@@ -1,8 +1,9 @@
-package com.crud.tasks.trello.client;
+package com.crud.tasks.trello.facade;
 
 import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
+import com.crud.tasks.trello.client.TrelloClient;
 import com.crud.tasks.trello.config.TrelloConfig;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +22,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TrelloClientTest {
-
+public class FacadeTrelloTest {
     @InjectMocks
     private TrelloClient trelloClient;
     @Mock
@@ -35,7 +35,6 @@ public class TrelloClientTest {
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
-       // when(trelloConfig.getTrelloAppUsername()).thenReturn("test"); //można tę linijkę użyć i odkomentować getUri w trelloClient
     }
 
     @Test
@@ -58,7 +57,6 @@ public class TrelloClientTest {
         assertEquals(new ArrayList<>(), fetchedTrelloBoards.get(0).getLists());
 
     }
-
     @Test
     public void shouldCreateCard() throws URISyntaxException{
         //Given
@@ -104,5 +102,4 @@ public class TrelloClientTest {
         assertEquals(0, fetchedTrelloBoards.size());
 
     }
-
 }
