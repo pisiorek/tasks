@@ -28,6 +28,7 @@ public class TrelloService {
     private SimpleEmailService emailService;
 
     public List<TrelloBoardDto> fetchTrelloBoards(){
+        System.out.println("Z Service" );
         return trelloClient.getTrelloBoards();
     }
 

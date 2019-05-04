@@ -39,7 +39,7 @@ public class TrelloClient {
                 .queryParam("lists", "all").build().encode().toUri();
 
         //System.out.println(getUri());
-        //System.out.println(url);
+        System.out.println( url + " Z Clienta" );
         try {
             TrelloBoardDto[] boardsResponse = restTemplate.getForObject( url /*getUri()*/, TrelloBoardDto[].class);
 
