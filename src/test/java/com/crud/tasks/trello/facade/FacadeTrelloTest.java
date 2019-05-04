@@ -1,9 +1,6 @@
 package com.crud.tasks.trello.facade;
 
-import com.crud.tasks.domain.CreatedTrelloCardDto;
-import com.crud.tasks.domain.TrelloBoard;
-import com.crud.tasks.domain.TrelloBoardDto;
-import com.crud.tasks.domain.TrelloCardDto;
+import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.TrelloMapper;
 import com.crud.tasks.service.TrelloService;
 import com.crud.tasks.trello.client.TrelloClient;
@@ -42,6 +39,8 @@ public class FacadeTrelloTest {
     private TrelloClient trelloClient;
     @Mock
     private TrelloValidator trelloValidator;
+    @Mock
+    private TrelloCardDto trelloCardDto;
 
     @Before
     public void init(){
@@ -93,5 +92,43 @@ public class FacadeTrelloTest {
         assertEquals("test_id", fetchedTrelloBoards.get(0).getId());
         assertEquals("test_board", fetchedTrelloBoards.get(0).getName());
         assertEquals(new ArrayList<>(), fetchedTrelloBoards.get(0).getLists());
+    }
+
+    @Test
+    public void shouldCreateCard() throws URISyntaxException{
+        //Given
+        TrelloCardDto trelloCardDto = new TrelloCardDto(
+                "Test task",
+                "Test Description",
+                "top",
+                "test_id"
+        );
+
+        TrelloCard trelloCard = new TrelloCard(
+                "Test task",
+                "Test Description",
+                "top",
+                "test_id"
+        );
+
+        URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
+
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
+                "1",
+                "Test task",
+                "http://test.com"
+        );
+
+        //when(restTemplate.postForObject(uri, null, CreatedTrelloCardDto.class)).thenReturn(createdTrelloCardDto);
+        when(trelloMapper.mapToCard(trelloCardDto)).thenReturn(trelloCard);
+        when(trelloService.createTrelloCard(trelloMapper.mapToCardDto(trelloCard))).thenReturn(createdTrelloCardDto);
+
+        //When
+        CreatedTrelloCardDto newCard = trelloFacade.createCard(trelloCardDto);
+
+        //Then
+        assertEquals("1", newCard.getId());
+        assertEquals("Test task", newCard.getName());
+        assertEquals("http://test.com", newCard.getShortUrl());
     }
 }
