@@ -177,6 +177,9 @@ public class FacadeTrelloTest {
         List<TrelloBoard> mappedTrelloBoards = new ArrayList<>();
         mappedTrelloBoards.add(new TrelloBoard("1", "my_task", mappedTrelloLists));
 
+        /***
+         * w poniższej sekcji zawsze implementujemy wszystkie metody występujące w testowanej klasie
+         */
         when(trelloService.fetchTrelloBoards()).thenReturn(trelloBoards);
         when(trelloMapper.mapToBoards(trelloBoards)).thenReturn(mappedTrelloBoards);
         when(trelloMapper.mapToBoardsDto(anyList())).thenReturn(trelloBoards);
