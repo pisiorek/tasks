@@ -38,4 +38,22 @@ public class SimpleEmailServiceTest {
         //Then
         verify(javaMailSender, times(1)).send(mailArgs.capture());
     }
+
+    @Test
+    public void shouldSendEmailTest() {
+        //Given
+        Mail eMail = new Mail("test@test.com", "Subject", "message", "darek@kodilla.pl");
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(eMail.getMailTo());
+        message.setSubject(eMail.getSubject());
+        message.setText(eMail.getMessage());
+        message.setCc(eMail.getToCc());
+
+        //When
+        simpleEmailService.send(eMail);
+
+        //Then
+        verify(javaMailSender, times(1)).send(message);
+    }
 }

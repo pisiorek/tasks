@@ -77,7 +77,7 @@ public class FacadeTrelloTest {
         TrelloBoard[] trelloB = new TrelloBoard[1];
         trelloB[0] = new TrelloBoard("test_id", "test_board", new ArrayList<>());
 
-        URI uri = new URI("http://test.com/members/dariuszharanczyk/boards?key=test&token=test&fields=name,id&lists=all");
+        //URI uri = new URI("http://test.com/members/dariuszharanczyk/boards?key=test&token=test&fields=name,id&lists=all");
 
         /***
          * Zawsze mockujemy wszystkie metody klas, które są wykorzystywane przez testowaną klasę
@@ -113,7 +113,7 @@ public class FacadeTrelloTest {
                 "test_id"
         );
 
-        URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
+        //URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
 
         CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
                 "1",

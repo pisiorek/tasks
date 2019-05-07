@@ -16,7 +16,7 @@ import java.util.List;
 public class TrelloController {
 
 /*    @Autowired
-    private TrelloService trelloService;*/  //po wyłączeniu wzorca Facade należy to odkomentować i zakomentować poniższe TrelloFacade
+    private TrelloService trelloService;*/  //po wyłączeniu wzorca Facade należy odkomentować i zakomentować TrelloFacade
 
 @Autowired
 private TrelloFacade trelloFacade;
