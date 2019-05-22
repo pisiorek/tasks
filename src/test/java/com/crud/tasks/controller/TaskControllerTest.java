@@ -1,37 +1,42 @@
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.Task;
-import com.crud.tasks.domain.TaskDto;
-import com.crud.tasks.mapper.TaskMapper;
-import com.crud.tasks.service.DbService;
-import com.google.gson.Gson;
-import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+        import com.crud.tasks.domain.Task;
+        import com.crud.tasks.domain.TaskDto;
+        import com.crud.tasks.mapper.TaskMapper;
+        import com.crud.tasks.service.DbService;
+        import com.google.gson.Gson;
+        //import org.aspectj.lang.annotation.Before;
+        import org.junit.Before;
+        import org.hamcrest.Matchers;
+        import org.junit.Test;
+        import org.junit.runner.RunWith;
+        import org.mockito.InjectMocks;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+        import org.springframework.boot.test.mock.mockito.MockBean;
+        import org.springframework.http.MediaType;
+        import org.springframework.test.context.junit4.SpringRunner;
+        import org.springframework.test.web.servlet.MockMvc;
+        import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+        import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Optional;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+        import static org.hamcrest.Matchers.is;
+        import static org.hamcrest.Matchers.hasSize;
+        import static org.mockito.Matchers.any;
+        import static org.mockito.Mockito.when;
+        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+        import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+        import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TaskController.class)
 public class TaskControllerTest {
 
-   @Autowired
+    @Autowired
     private MockMvc mockMvc;
 
     @MockBean
@@ -39,6 +44,19 @@ public class TaskControllerTest {
 
     @MockBean
     private DbService service;
+
+    /********************/
+    //@MockBean
+    //private MockMvc mockMvc;
+    @InjectMocks
+    TaskController taskController;
+
+
+    @Before
+    public void setUp() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(taskController)
+                .setControllerAdvice(new TaskNotFoundException()).alwaysExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8")).build();
+    }
 
     @Test
     public void shouldGetEmptyTasks() throws Exception {
@@ -137,4 +155,26 @@ public class TaskControllerTest {
                 .andExpect(status().isOk());
 
     }
+
+/*    @Test
+    public void shouldDeleteTask() throws Exception {
+
+        //Given
+        //When & Then
+        mockMvc.perform(MockMvcRequestBuilders
+                .delete("/v1/task/deleteTask")
+                .param("taskId", "0L")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+         }*/
 }
+
+/*        mockMvc.perform(delete("/v1/task/deleteTask?taskId=1L").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(200));*/
+
+
+
+/*        mockMvc.perform(MockMvcRequestBuilders
+                .delete("/v1/task/deleteTask/11L")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());*/
