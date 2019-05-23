@@ -17,6 +17,7 @@ package com.crud.tasks.controller;
         import org.springframework.http.MediaType;
         import org.springframework.test.context.junit4.SpringRunner;
         import org.springframework.test.web.servlet.MockMvc;
+        import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
         import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
         import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -44,19 +45,6 @@ public class TaskControllerTest {
 
     @MockBean
     private DbService service;
-
-    /********************/
-    //@MockBean
-    //private MockMvc mockMvc;
-    @InjectMocks
-    TaskController taskController;
-
-
-    @Before
-    public void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(taskController)
-                .setControllerAdvice(new TaskNotFoundException()).alwaysExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8")).build();
-    }
 
     @Test
     public void shouldGetEmptyTasks() throws Exception {
@@ -156,25 +144,16 @@ public class TaskControllerTest {
 
     }
 
-/*    @Test
+    @Test
     public void shouldDeleteTask() throws Exception {
 
         //Given
-        //When & Then
+        // When & Then
         mockMvc.perform(MockMvcRequestBuilders
                 .delete("/v1/task/deleteTask")
-                .param("taskId", "0L")
+                .param("taskId", "1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-         }*/
+    }
 }
 
-/*        mockMvc.perform(delete("/v1/task/deleteTask?taskId=1L").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(200));*/
-
-
-
-/*        mockMvc.perform(MockMvcRequestBuilders
-                .delete("/v1/task/deleteTask/11L")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());*/
