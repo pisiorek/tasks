@@ -41,6 +41,8 @@ dependencies {
 	compile('com.google.code.gson:gson:2.8.2')
 	
 	compile('org.springframework.boot:spring-boot-starter-actuator')
+	//Thymeleaf
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
 }
 
