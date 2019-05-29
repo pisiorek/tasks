@@ -13,6 +13,10 @@ public class TasksApplication extends SpringBootServletInitializer {  //przy tom
 		SpringApplication.run(TasksApplication.class, args);
 	}
 
+	/**
+	 poniżej implementacja metody z kl. abstrakcyjnej SpringApplicationBuilder - niezbędne dla zewnętrznego Tomcata, przed deployem na Tomcat odkomentować !
+	 *
+	 */
 	@Override
 	protected SpringApplicationBuilder configure (SpringApplicationBuilder application){
 		return application.sources(TasksApplication.class);
