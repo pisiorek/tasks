@@ -15,9 +15,14 @@ public class MailCreatorService {
 
     @Autowired
     private AdminConfig adminConfig;
+
     @Autowired
     @Qualifier("templateEngine")
     private TemplateEngine templateEngine;
+
+    @Autowired
+    @Qualifier("templateEngine")
+    private TemplateEngine templateEngineNoTasks;
 
     public String buildTrelloCardEmail(String message){
 
@@ -40,5 +45,18 @@ public class MailCreatorService {
         context.setVariable("if_friend", false);
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
+    }
+
+    public String numberTasksInfo(String message){
+        Context context = new Context();
+        context.setVariable("preview_message","There is information about numbers tasks in your account");
+        context.setVariable("message", message);
+        context.setVariable("show_button", false);
+        context.setVariable("company_name", adminConfig.getCompanyName());
+        context.setVariable("company_email", adminConfig.getCompanyEmail());
+        context.setVariable("company_phone", adminConfig.getCompanyPhone());
+        context.setVariable("goodbye_message","Thank you and see you again !");
+        return templateEngineNoTasks.process("mail/tasks-number-mail",context);
+
     }
 }
