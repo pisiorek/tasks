@@ -6,8 +6,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class TasksApplication extends SpringBootServletInitializer {  //przy tomcacie odkomentować i zakomentować ponizsza linijke
-//public class TasksApplication {		//przy heroku odkomentować i zakomentować powyższe
+//public class TasksApplication extends SpringBootServletInitializer {  //przy tomcacie odkomentować i zakomentować ponizsza linijke
+public class TasksApplication {		//przy heroku odkomentować i zakomentować powyższe
 
 	public static void main(String[] args) {
 		SpringApplication.run(TasksApplication.class, args);
@@ -17,10 +17,10 @@ public class TasksApplication extends SpringBootServletInitializer {  //przy tom
 	 poniżej implementacja metody z kl. abstrakcyjnej SpringApplicationBuilder - niezbędne dla zewnętrznego Tomcata, przed deployem na Tomcat odkomentować !
 	 *
 	 */
-	@Override
+/*	@Override
 	protected SpringApplicationBuilder configure (SpringApplicationBuilder application){
 		return application.sources(TasksApplication.class);
-	}
+	}*/
 
 
 }
