@@ -54,7 +54,6 @@ public class SimpleEmailService {
     }*/
 
 
-
 //poniżej pozostałość po wcześniejszych modułach
 /*    private SimpleMailMessage createMailMessage(final Mail mail){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
